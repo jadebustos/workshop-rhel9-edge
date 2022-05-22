@@ -1,18 +1,8 @@
 ---
 
 - name: build container image for application
-  command: '/usr/bin/buildah from registry.access.redhat.com/ubi8/ubi:latest'
-  register: buildah
-  when: ansible_distribution == 'RedHat' and ansible_distribution_version == '8.5'
-
-- name: build container image for application
   command: '/usr/bin/buildah from registry.access.redhat.com/ubi9/ubi:latest'
   register: buildah
-  when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Plow'
-
-- name: debug
-  debug:
-    msg: "{{ buildah.stdout }}"
 
 - name: install httpd in container image
   command: "/usr/bin/buildah run {{ buildah.stdout }} -- dnf install httpd -y"
