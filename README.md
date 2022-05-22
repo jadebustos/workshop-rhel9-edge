@@ -1,6 +1,6 @@
 # Workshop Edge Computing with RHEL 9
 
-This workshop is based in [https://github.com/RedHatGov/RFESummit2021](https://github.com/RedHatGov/RFESummit2021) and it is an adapter version to RHEL 9 for the workshop [Workshop Edge Computing with RHEL 8](https://github.com/jadebustos/workshop-rhel8-edge).
+This workshop is based in [https://github.com/RedHatGov/RFESummit2021](https://github.com/RedHatGov/RFESummit2021) and it is an adapted version to RHEL 9 for the workshop [Workshop Edge Computing with RHEL 8](https://github.com/jadebustos/workshop-rhel8-edge).
 
 This workshop will also use playbooks from [https://github.com/MoyRivera/edge](https://github.com/MoyRivera/edge).
 
