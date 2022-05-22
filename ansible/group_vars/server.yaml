@@ -1,9 +1,8 @@
 ---
 
-rpms: ['cockpit', 'cockpit-composer', 'composer-cli', 'osbuild-composer', 'jq', 'golang', 'chrony', 'dnf-utils', 'httpd']
-rpms_rhel9: ['ansible-collection-ansible-posix', 'podman']
+rpms: ['cockpit', 'cockpit-composer', 'composer-cli', 'osbuild-composer', 'jq', 'golang', 'chrony', 'dnf-utils', 'httpd', 'bash-completion', 'ansible-collection-ansible-posix', 'podman', 'buildah']
 
-systemd_services: ['chronyd', 'cockpit.socket', 'osbuild-composer']
+systemd_services: ['chronyd', 'cockpit.socket', 'osbuild-composer.socket']
 
 enabled_ports: ['5000/tcp']
 enabled_services: ['http']

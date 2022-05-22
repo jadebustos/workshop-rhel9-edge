@@ -5,18 +5,9 @@
     name: '*'
     state: latest
     
-- name: install software
-  dnf:
-    name: "{{ rpms }}"
-    state: present
-
-- name: install container tools
-  command: '/usr/bin/dnf module install container-tools -y'
-  when: ansible_distribution == 'RedHat' and ansible_distribution_version == '8.5'
-
-- name: enable codeready-builder-for-rhel-8-x86_64-rpms repository
-  command: "/usr/bin/subscription-manager repos --enable=codeready-builder-for-rhel-8-x86_64-rpms"
-  when: ansible_distribution == 'RedHat' and ansible_distribution_version == '8.5'
+- name: enable codeready-builder-for-rhel-9-x86_64-rpms repository
+  command: "/usr/bin/subscription-manager repos --enable=codeready-builder-for-rhel-9-x86_64-rpms"
+  when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Plow'
 
 - name: import epel key
   rpm_key:
@@ -28,12 +19,11 @@
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
     state: present
 
+- name: install software
+  dnf:
+    name: "{{ rpms }}"
+    state: present
+
 - name: disable epel-modular repository
   command: '/usr/bin/dnf config-manager --disable epel-modular'
   when: ansible_distribution == 'RedHat' and ansible_distribution_version == '8.5'
-
-- name: installing rhel 9 rpms
-  dnf:
-    name: "{{ rpms_rhel9 }}"
-    state: present
-  when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Plow'
