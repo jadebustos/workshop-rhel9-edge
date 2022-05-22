@@ -1,31 +1,31 @@
-# RHEL 8 server
+# RHEL 9 server
 
 You will need the following:
 
 * An ansible controller node to deploy the workshop.
 * A virtualization software, this workshop assumes that you use KVM.
-* A RHEL 8 Virtual Machine.
+* A RHEL 9 Virtual Machine.
 
 Clone this repository in your ansible controller node:
 
 ```console
-# git clone git@github.com:jadebustos/workshop-rhel8-edge.git
+# git clone git@github.com:jadebustos/workshop-rhel9-edge.git
 ```
 
-## RHEL 8 server deployment
+## RHEL 9 server deployment
 
-Deploy a RHEL 8 server as a Virtual Machine and perform the following:
+Deploy a RHEL 9 server as a Virtual Machine and perform the following:
 
 * Create a VM with 2 processors, 25 GB disk and 8 GB RAM (or 4 GB).
   > ![IMPORTANT](icons/important-icon.png) Before deploying the server check the section **Hypervisor configuration (other hypervisors)** in [Requirements for hypervisor](04-requirements-hypervisor.md). If you have to use this server to create the boot iso you will need to increase the size at least the RHEL iso size three times.
 * Register the server and configure the **BaseOS** and **AppStream** repos.
 * Configure root user to be used with ansible (public key authentication).
-* Edit the [inventory file](ansible/hosts) and under inventory group **rhelserver** replace **192.168.1.222** by your RHEL 8 server's IP.
-* Configure the RHEL 8 server executing from your ansible controller node:
+* Edit the [inventory file](ansible/hosts) and under inventory group **rhelserver** replace **192.168.1.222** by your RHEL 9 server's IP.
+* Configure the RHEL 9 server executing from your ansible controller node:
 
   ```console
-  $ git clone git@github.com:jadebustos/workshop-rhel8-edge.git
-  $ cd workshop-rhel8-edge/ansible
+  $ git clone git@github.com:jadebustos/workshop-rhel9-edge.git
+  $ cd workshop-rhel9-edge/ansible
   $ ansible-playbook -i hosts -l rhelserver prerequisites_server.yaml
   ```
 
