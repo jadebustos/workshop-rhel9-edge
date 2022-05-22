@@ -20,12 +20,6 @@
     mode: 0640
   become: true
 
-- name: rheledge 8 deployment iso creation
-  command: "/usr/sbin/mkksiso -c 'inst.text' {{ tmp_dir }}/edge.ks {{ rhel8_iso }} {{ boot_iso }}"
-  become: true
-  when: ansible_distribution == 'RedHat' and ansible_distribution_version == '8.5'
-
 - name: rheledge 9 deployment iso creation
-  command: "/usr/sbin/mkksiso -c 'inst.text' {{ tmp_dir }}/edge.ks {{ rhel9_iso }} {{ boot_iso }}"
+  command: "/usr/sbin/mkksiso -c 'inst.text' {{ tmp_dir }}/edge.ks {{ rhel_iso }} {{ boot_iso }}"
   become: true
-  when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Plow'

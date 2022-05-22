@@ -2,7 +2,7 @@
 
 rpms: ['lorax']
 
-rhel8_iso: '/opt/isos/rhel-8.5-x86_64-dvd.iso'
+rhel_iso: '/opt/isos/rhel-8.5-x86_64-dvd.iso'
 
 demo_dir: 'demo'
 tmp_dir: '/tmp/rheledge'
@@ -18,8 +18,7 @@ rheledge_dns: '8.8.8.8'
 rheledge_memory: 8192
 rheledge_vcpus: 2
 rheledge_network: 'bridge=bridge0'
-rhel8edge_os_variant: 'rhel8.5'
-rhel9edge_os_variant: 'rhel9.0'
+rheledge_os_variant: 'rhel9.0'
 rheledge_disk_size: '16'
 
 core_authorized_pub_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCccOztL5bzHEacvfK5QbB14AX07JnBKGn5B51CdGmu+FaVOd9zlbkphMfDuwoLJ6fn7DZPEWBHkKwT/a8JdYAmyUKqKV8smhyjHr7z04HhFwN8n7ItGaE3JTz6ZH7jKCwgUEpRlPe487cM3SGhpDUrC8oejsanA2Z2Dx1yVLYUuh1P1v83K46KrASu7QSdFhqF1XkYKKKqfyUxr4lb9EKv9xEMUYtY8zBk4x+ImL6jdc4oi/E4+taSM7KOqtGAMhRKTUVOG+g5z9MZwkKF6DsddWBt0wFg1NLP9MJcQe7v6Ni/RIFsAhgxjbdSB3UGN1x+tAu59sGUuVaFIePqyfzXCSrKp1e6YrfOVlYM5LJmT+heeLLSnkUNWp68+MLrWfztmA62oVIM8hFnUinfNI6VuXJY/R0UUeamWwMrRu8T8xs/mPpwXQRj5PscJgm1SHxve1Dr02S/65bJzMnFYy8jtNsxqdUER66Zt/AfFlRhklnMMs1okwqyifXaU3beF7huXRAJYwG7PzNuObfDGmjpySSLLLm8kUdPShT6HXgX+Sn70e/FWroPfRpIZssVlqaDtUtvI+KlSarq8auyrGTcC2UN2zsjSw80Z0YdT0Sm6kPdHqgkZLINTu2r0Mrz1V210YXvzJXUEwTVRQJujTwU4/8UcZdZIh9jPQa98IV/hQ== jadebustos@archimedes.jadbp.lab
