@@ -87,9 +87,9 @@ Download the image:
 [root@rhel8edge ~]# mkdir edgeimages
 [root@rhel8edge ~]# cd edgeimages
 [root@rhel8edge edgeimages]# composer-cli compose status
-4e9a0fe8-eca4-4de8-8604-21b5c83237c2 FINISHED Tue Jan 18 15:09:59 2022 edgeserver      0.0.1 edge-commit      2147483648
-[root@rhel8edge edgeimages]# composer-cli compose image 4e9a0fe8-eca4-4de8-8604-21b5c83237c2
-4e9a0fe8-eca4-4de8-8604-21b5c83237c2-commit.tar: 780.69 MB    
+7c7dc02c-5ae1-4b98-98c6-2e502b746d8f FINISHED Sun May 22 19:59:13 2022 edgeserver      0.0.1 edge-commit      2147483648
+[root@rhel8edge edgeimages]# composer-cli compose image 7c7dc02c-5ae1-4b98-98c6-2e502b746d8f
+7c7dc02c-5ae1-4b98-98c6-2e502b746d8f FINISHED edgeserver 0.0.1 edge-commit
 [root@rhel8edge edgeimages]# 
 ```
 
@@ -99,19 +99,20 @@ The image is a tar file so we can expand the image and check the metadata:
 [root@rhel8edge edgeimage]# tar xf *.tar -C /var/www/html/ostree
 [root@rhel8edge edgeimage]# jq '.' /var/www/html/ostree/compose.json 
 {
-  "ref": "rhel/8/x86_64/edge",
-  "ostree-n-metadata-total": 10313,
-  "ostree-n-metadata-written": 3746,
-  "ostree-n-content-total": 30395,
-  "ostree-n-content-written": 25915,
+  "ref": "rhel/9/x86_64/edge",
+  "ostree-n-metadata-total": 9073,
+  "ostree-n-metadata-written": 3091,
+  "ostree-n-content-total": 27561,
+  "ostree-n-content-written": 23600,
   "ostree-n-cache-hits": 0,
-  "ostree-content-bytes-written": 1797710538,
-  "ostree-commit": "073931ab9c68a19b9cf655cdf01ccd427d269d6b9d8d70dd5989d690d90daf5f",
-  "ostree-content-checksum": "f47afe115ad3c793d9d3c0ab4f7f4b2472ed8be3c6a88139ea4fa9d832c98fd8",
-  "ostree-version": "8.5",
-  "ostree-timestamp": "2022-01-18T14:09:33Z",
-  "rpm-ostree-inputhash": "13986da6d5b98ba469e5a1ffe51154172758c84bf9c6b350e33392018dc33535"
+  "ostree-content-bytes-written": 1133471020,
+  "ostree-commit": "c769ea748db1a642924a669ee6f8e21917a3fb5cbf5a37f33d9e14be61642749",
+  "ostree-content-checksum": "4df90e2da6e1eea30ebbed3d4fb5cc18a1a6b153bb274991ae62c6712dc0efde",
+  "ostree-version": "9.0",
+  "ostree-timestamp": "2022-05-22T17:59:06Z",
+  "rpm-ostree-inputhash": "58dd3bcd2ab60d9fadcb4c4882685638b402b7756bfe8c63cb7f52a427c9fec1"
 }
+
 [root@rhel8edge edgeimage]#
 ```
 
@@ -119,23 +120,25 @@ The image is a tar file so we can expand the image and check the metadata:
 
 > ![HOMEWORK](icons/homework-icon.png) It would be nice to explore what you have just extracted ;-).
 
-**ref** can be used to get the rpm intalled in the image:
+**ref** can be used to get the rpm installed in the image:
 
 ```console
-[root@rhel8edge edgeimage]# rpm-ostree db list rhel/8/x86_64/edge --repo=/var/www/html/ostree/repo
-ostree commit: rhel/8/x86_64/edge (073931ab9c68a19b9cf655cdf01ccd427d269d6b9d8d70dd5989d690d90daf5f)
- ModemManager-1.10.8-4.el8.x86_64
- ModemManager-glib-1.10.8-4.el8.x86_64
- NetworkManager-1:1.32.10-4.el8.x86_64
- NetworkManager-libnm-1:1.32.10-4.el8.x86_64
- NetworkManager-wifi-1:1.32.10-4.el8.x86_64
- NetworkManager-wwan-1:1.32.10-4.el8.x86_64
- acl-2.2.53-1.el8.x86_64
- attr-2.4.48-3.el8.x86_64
- audit-3.0-0.17.20191104git1c2f876.el8.x86_64
- audit-libs-3.0-0.17.20191104git1c2f876.el8.x86_64
- basesystem-11-5.el8.noarch
+[root@rhel8edge edgeimage]# rpm-ostree db list rhel/9/x86_64/edge --repo=/var/www/html/ostree/repo
+ostree commit: rhel/9/x86_64/edge (c769ea748db1a642924a669ee6f8e21917a3fb5cbf5a37f33d9e14be61642749)
+ ModemManager-1.18.2-3.el9.x86_64
+ ModemManager-glib-1.18.2-3.el9.x86_64
+ NetworkManager-1:1.36.0-4.el9_0.x86_64
+ NetworkManager-libnm-1:1.36.0-4.el9_0.x86_64
+ NetworkManager-wifi-1:1.36.0-4.el9_0.x86_64
+ NetworkManager-wwan-1:1.36.0-4.el9_0.x86_64
+ acl-2.3.1-3.el9.x86_64
+ alternatives-1.20-2.el9.x86_64
+ attr-2.5.1-3.el9.x86_64
+ audit-3.0.7-101.el9_0.2.x86_64
+ audit-libs-3.0.7-101.el9_0.2.x86_64
+ basesystem-11-13.el9.noarch
+ bash-5.1.8-4.el9.x86_64
 ...
 ```
 
-> ![HOMEWORK](icons/homework-icon.png) To create the image the **Image builder** feature from RHEL 8 is used. [A lot of things](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/composing_a_customized_rhel_system_image/index) can be done apart from install packages.
+> ![HOMEWORK](icons/homework-icon.png) To create the image the **Image builder** feature from RHEL 9 is used. [A lot of things](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/composing_a_customized_rhel_system_image/index) can be done apart from install packages.
