@@ -10,7 +10,7 @@ Before deploying the RHEL for Edge image configure the required data:
     rheledge_memory: 8192
     rheledge_vcpus: 2
     rheledge_network: 'bridge=bridge0'
-    rheledge_os_variant: 'rhel8.5'
+    rheledge_os_variant: 'rhel9.0'
     rheledge_disk_size: '16'
     ```
 
@@ -26,9 +26,9 @@ $ ansible-playbook -i hosts -l hypervisor deploy_rhel_edge_image.yaml
 
 This playbook will deploy a virtual machine using the RHEL for Edge image we have created. The virtual machine will be powered off after finishing deployment. So you will need to start it.
 
-> ![IMPORTANT](icons/important-icon.png) If you get the following error **xorriso : FAILURE : Image size XXXXXXXXs exceeds free space on media YYYYYYYYs** check the free space in the **/tmp** filesystem. You will need to have at least twice of the RHEL 8 iso size free.
+> ![IMPORTANT](icons/important-icon.png) If you get the following error **xorriso : FAILURE : Image size XXXXXXXXs exceeds free space on media YYYYYYYYs** check the free space in the **/tmp** filesystem. You will need to have at least twice of the RHEL 9 iso size free.
 
-> ![TIP](icons/tip-icon.png) If we want to speed up the deployment we can connect to the virtual machine console and select the **Install Red Hat Enterprise Linux 8.5**. If not before deploying the server the iso will be checked and this will take more time.
+> ![TIP](icons/tip-icon.png) If we want to speed up the deployment we can connect to the virtual machine console and select the **Install Red Hat Enterprise Linux 9.0**. If not before deploying the server the iso will be checked and this will take more time.
 >
 > ![BOOT](imgs/rheledge-boot.png)
 
