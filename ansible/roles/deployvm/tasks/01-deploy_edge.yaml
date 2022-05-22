@@ -1,0 +1,11 @@
+---
+
+- name: deploy rhel 8 edge image
+  command: "/usr/bin/virt-install --name {{ rheledge_hostname }} --memory {{ rheledge_memory }} --vcpus {{ rheledge_vcpus }} --network {{ rheledge_network }} --cdrom {{ boot_iso }} --os-variant={{ rhel8edge_os_variant }} --disk size={{ rheledge_disk_size }} --graphics vnc,keymap=en-us --noautoconsole"
+  become: yes
+  when: ansible_distribution == 'RedHat' and ansible_distribution_version == '8.5'
+
+- name: deploy rhel 9 edge image
+  command: "/usr/bin/virt-install --name {{ rheledge_hostname }} --memory {{ rheledge_memory }} --vcpus {{ rheledge_vcpus }} --network {{ rheledge_network }} --cdrom {{ boot_iso }} --os-variant={{ rhel9edge_os_variant }} --disk size={{ rheledge_disk_size }} --graphics vnc,keymap=en-us --noautoconsole"
+  become: yes
+  when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Plow'

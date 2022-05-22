@@ -1,0 +1,9 @@
+---
+
+- name: configure server prerequitistes
+  hosts: rhelserver
+  vars_files:
+    - "group_vars/server.yaml"
+  gather_facts: true
+  roles:
+    - server

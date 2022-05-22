@@ -1,0 +1,39 @@
+---
+
+- name: registry directory creation
+  file:
+    path: '/var/lib/registry'
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    setype: var_lib_t
+    mode: '0700'
+
+- name: deploy registry
+  command: '/usr/bin/podman run --privileged -d --name registry -p 5000:5000 -v /var/lib/registry:/var/lib/registry:Z --restart=always docker.io/library/registry:2'
+
+- name: stop running containers
+  command: "/usr/bin/podman stop --all"
+
+- name: clean up containers
+  command: "/usr/bin/podman rm -f --all"
+
+- name: copy systemd unit for registry service to systemd hierarchy
+  copy:
+    src: container-registry.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    setype: systemd_unit_file_t
+    mode: 0644
+
+- name: force systemd to read new units
+  systemd:
+    daemon_reload: yes
+
+- name: enable and start container-registry service
+  systemd:
+    name: container-registry.service
+    state: started
+    enabled: yes
+    masked: no

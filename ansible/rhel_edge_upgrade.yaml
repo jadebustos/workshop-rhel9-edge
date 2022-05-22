@@ -1,0 +1,77 @@
+---
+
+# this playbook is a modified version.
+# the original playbook: https://github.com/MoyRivera/edge/blob/main/rhelUpgrade.yml
+
+- hosts: rheledge
+  gather_facts: false
+  vars:
+    imageIDOrig: "c64caf005d6d031c96aacd67f3bfd99ce0933fd799e314654ebdd0acbabd025e"
+    imageIDOrigString: "v1"
+    imageIDUpdated: "7efbd62e2285847cc2738ab471a310d26fabe43a1d379831ec56730c098939ee"
+    imageIDUpdatedString: "v2"
+    UpgradeSuccess: false
+
+  tasks: 
+     
+    - name: "getting image ID"
+      shell: 
+        cmd: cat /etc/greenboot/orig.txt
+      register: imageID
+
+    - when: imageID.stdout == imageIDOrig 
+      set_fact:
+        imageString: "{{ imageIDOrigString }}"
+
+    - when: imageID.stdout != imageIDOrig 
+      set_fact:
+        imageString: "{{ imageIDUpdatedString }}"
+
+    - debug: 
+        msg:
+          - "Current OS version: {{ imageString }}"
+    
+    - when: UpgradeSuccess == 'true'
+      file:
+        path: "/etc/greenboot/orig.txt"
+        state: absent
+      become: yes
+
+    - name: "trying to upgrade {{ inventory_hostname }} OS"
+      systemd:
+        name: rpm-ostreed-automatic
+        state: started
+      become: true
+
+    - name: "waiting for {{ inventory_hostname }} up & running"
+      wait_for:
+        port: 22
+        delay: 61
+        host: "{{ inventory_hostname }}"
+        timeout: 300
+      delegate_to: localhost  # If not delegate to localhost, the playbook try to connect to the remote node
+
+    - name: getting image ID
+      shell:
+        cmd: cat /etc/greenboot/orig.txt
+      register: imageID
+
+    - when: imageID.stdout == imageIDOrig 
+      set_fact:
+        imageString: "{{ imageIDOrigString }}"
+
+    - when: imageID.stdout == imageIDUpdated 
+      set_fact:
+        imageString: "{{ imageIDUpdatedString }}"
+
+    - when: imageID.stdout == imageIDOrig
+      set_fact:
+        imageString: "FAIL. Running version {{ imageIDOrigString }}"
+
+    - when: imageID.stdout != imageIDOrig
+      set_fact:
+        imageString: "OK. Running version {{ imageString }}"
+
+    - debug:
+        msg:
+          - "The upgrade was: {{ imageString }}"

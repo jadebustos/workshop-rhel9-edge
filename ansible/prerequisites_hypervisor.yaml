@@ -1,0 +1,9 @@
+---
+
+- name: configure server prerequitistes
+  hosts: hypervisor
+  vars_files:
+    - "group_vars/hypervisor.yaml"
+  gather_facts: true
+  roles:
+    - hypervisor

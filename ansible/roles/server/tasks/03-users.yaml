@@ -1,0 +1,7 @@
+---
+
+- name: user creation
+  user:
+    name: "{{ user }}"
+    shell: /bin/bash
+    password: "{{ user_password }}"

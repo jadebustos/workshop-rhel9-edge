@@ -1,0 +1,9 @@
+---
+
+- name: deploy rhel edge image
+  hosts: hypervisor
+  vars_files:
+    - "group_vars/hypervisor.yaml"
+  gather_facts: false
+  roles:
+    - deployvm
