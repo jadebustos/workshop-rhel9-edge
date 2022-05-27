@@ -59,7 +59,7 @@ If you decide to do the above:
   rheledge_gw: '192.168.1.1'
   rheledge_dns: '8.8.8.8'
   ```
-* A RHEL 8 iso must be uploaded to the RHEL server.
+* A RHEL 9 iso must be uploaded to the RHEL server.
 * The **/tmp** filesystem must have at least twice of RHEL iso size free.
 * On your ansible controller node execute:
   ```console

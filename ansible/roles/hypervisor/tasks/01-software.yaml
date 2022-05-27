@@ -1,7 +1,0 @@
----
-
-- name: install software
-  dnf:
-    name: "{{ rpms }}"
-    state: present
-  become: yes
