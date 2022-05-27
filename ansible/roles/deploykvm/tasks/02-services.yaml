@@ -1,0 +1,10 @@
+---
+
+- name: configure services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    masked: no
+    state: started
+  become: yes
+  loop: "{{ services }}"

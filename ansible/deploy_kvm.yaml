@@ -1,0 +1,9 @@
+---
+
+- name: deploy kvm
+  hosts: hypervisor
+  vars_files:
+    - "group_vars/deploykvm.yaml"
+  gather_facts: true
+  roles:
+    - deploykvm

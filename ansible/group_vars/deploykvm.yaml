@@ -1,0 +1,4 @@
+---
+
+rpms: ['libvirt-devel', 'virt-top', 'libguestfs-tools', 'cockpit', 'cockpit-machines']
+services: ['libvirtd', 'cockpit.socket']
