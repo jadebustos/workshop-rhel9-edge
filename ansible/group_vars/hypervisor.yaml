@@ -15,7 +15,8 @@ rheledge_dns: '8.8.8.8'
 
 rheledge_memory: 8192
 rheledge_vcpus: 2
-rheledge_network: 'bridge=bridge0'
+#rheledge_network: 'bridge=bridge0'
+rheledge_network: 'network=default'
 rheledge_os_variant: 'rhel9.0'
 rheledge_disk_size: '16'
 
