@@ -240,12 +240,18 @@ restorecon -vFr /var/home/core
 
 # enable linger so user services run whether user logged in or not
 cat << EOF > /etc/systemd/system/enable-linger.service
+### Editing /etc/systemd/system/enable-linger.service.d/override.conf
+### Anything between here and the comment below will become the new contents of the file
+
 [Service]
 Type=oneshot
 ExecStart=loginctl enable-linger core
 
 [Install]
 WantedBy=multi-user.target default.target
+
+### Lines below this comment will be discarded
+
 EOF
 
 systemctl enable enable-linger.service
