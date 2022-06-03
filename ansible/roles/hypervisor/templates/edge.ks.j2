@@ -136,7 +136,7 @@ Requires=container-httpd-proxy.socket
 After=container-httpd-proxy.socket
 
 [Service]
-ExecStart=/usr/lib/systemd/systemd-socket-proxyd 127.0.0.1:8080
+ExecStart=/usr/lib/systemd/systemd-socket-proxyd --exit-idle-time={{inactivity_timeout }} 127.0.0.1:8080
 EOF
 
 ##
@@ -152,6 +152,7 @@ cat > /var/home/core/.config/systemd/user/container-httpd.service <<EOF
 [Unit]
 Description=Podman container-httpd.service
 Documentation=man:podman-generate-systemd(1)
+StopWhenUnneeded=true
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n

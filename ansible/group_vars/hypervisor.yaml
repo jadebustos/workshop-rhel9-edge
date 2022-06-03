@@ -24,6 +24,8 @@ core_authorized_pub_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCccOztL5bzHEacvf
 '
 
 # kickstart
+# inactivity segs to stop container app 
+inactivity_timeout = 20
 
 # uncomment this settings to configure english settings in the rhel edge server
 #lang: 'en_US.UTF-8'
@@ -34,3 +36,4 @@ core_authorized_pub_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCccOztL5bzHEacvf
 lang: 'es_ES.UTF-8'
 keyboard: 'es'
 timezone: 'UTC'
+
