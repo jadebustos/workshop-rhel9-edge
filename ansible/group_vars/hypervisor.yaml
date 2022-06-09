@@ -25,7 +25,8 @@ core_authorized_pub_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCccOztL5bzHEacvf
 
 # kickstart
 # inactivity segs to stop container app 
-inactivity_timeout = 20
+inactivity_timeout: 5
+container_app: 'quay.io/rhte_2019/2048-demoday:latest'
 
 # uncomment this settings to configure english settings in the rhel edge server
 #lang: 'en_US.UTF-8'
