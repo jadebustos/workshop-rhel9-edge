@@ -1,8 +1,8 @@
 [rhelserver]
-localhost ansible_user=root
+192.168.1.53 ansible_user=root
 
 [hypervisor]
-localhost ansible_user=jadebustos
+192.168.1.53 ansible_user=jadebustos
 
 [rheledge]
 192.168.122.134 ansible_user=core
